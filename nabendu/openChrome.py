@@ -6,11 +6,12 @@ import webbrowser
 #configuring speak engine with pyttsx3
 engine = pyttsx3.init() #initialization
 engine.setProperty('voice', 'english_rp+f4') #setting the female voice
-engine.setProperty('rate',130) #speaking speed = 130 (default 200)
+engine.setProperty('rate',140) #speaking speed = 130 (default 200)
 
 #speak function
 def speak(text):
     engine.say(text)
+    print("IRIS said: "+text)
     engine.runAndWait()
 
 def takeCommand():
@@ -43,4 +44,3 @@ if 'open chrome' in query:
     webbrowser.get(chrome_path).open('google.com')
 else:
     speak("I didnt understand, Please Say again")
-    print("Say again")
