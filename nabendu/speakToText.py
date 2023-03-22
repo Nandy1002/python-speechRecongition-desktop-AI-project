@@ -1,7 +1,7 @@
 import speech_recognition as sr  
 import os
 
-# get audio from the microphone                                                                       
+#get audio from microphone                                  
 def takeCommand():
     #It takes microphone input from the user and returns string output
     
