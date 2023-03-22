@@ -5,7 +5,8 @@ import wikipedia #pip install wikipedia
 
 #configuring speak engine with pyttsx3
 engine = pyttsx3.init() #initialization
-engine.setProperty('voice', 'english_rp+f2') #setting the female voice
+engine.setProperty('voice', 'english_rp+f5') #setting the female voice
+# engine.setProperty('')
 engine.setProperty('rate',140) #speaking speed = 130 (default 200)
 
 #speak function
@@ -42,6 +43,6 @@ if 'wikipedia' in query:
     speak("Searching in Wikipedia")
     query = query.replace("wikipedia","")
     results = wikipedia.summary(query,sentences=2)
-    speak("According to Wikipedia,"+results)
+    speak("According to Wikipedia , "+results)
 else:
     speak("I didnt understand, Please Say again")
