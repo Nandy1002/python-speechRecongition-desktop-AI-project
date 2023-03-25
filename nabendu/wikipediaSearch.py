@@ -1,19 +1,7 @@
-import pyttsx3
+from speak2 import speak
 import speech_recognition as sr
 import os
 import wikipedia #pip install wikipedia
-
-#configuring speak engine with pyttsx3
-engine = pyttsx3.init() #initialization
-engine.setProperty('voice', 'english_rp+f5') #setting the female voice
-# engine.setProperty('')
-engine.setProperty('rate',140) #speaking speed = 130 (default 200)
-
-#speak function
-def speak(text):
-    engine.say(text)
-    print("IRIS said: "+text)
-    engine.runAndWait()
 
 def takeCommand():
     #It takes microphone input from the user and returns string output
