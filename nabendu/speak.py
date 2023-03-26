@@ -10,7 +10,7 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 
-speak("Hello")
-for voice in engine.getProperty('voices'):
-    print(voice)
+# speak("Hello this is a sample voice from espeak")
+# for voice in engine.getProperty('voices'):
+#     print(voice)
 
