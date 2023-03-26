@@ -1,6 +1,10 @@
+#failed
+
 import speech_recognition as sr
 import os
-
+import chatbot
+from speak2 import speak
+from chatterbot import ChatBot
 # get audio from microphone
 
 
@@ -25,3 +29,16 @@ def takeCommand():
         print("Say that again please...")
         return "None"  # None string will be returned
     return query
+
+speak("Hi I am IRIS.")
+
+query = takeCommand().lower()
+
+
+chatbot = ChatBot("Chatpot")
+
+
+exit_conditions = (":q", "quit", "exit")
+
+
+print(f"🪴 {chatbot.get_response(query)}")

@@ -1,5 +1,7 @@
 import speech_recognition as sr
 import os
+import pywhatkit as kt
+from speak import speak
 
 # get audio from microphone
 
@@ -25,3 +27,10 @@ def takeCommand():
         print("Say that again please...")
         return "None"  # None string will be returned
     return query
+
+speak("Hi, I am IRIS, How can i help you ?")
+query = takeCommand().lower()
+if "search" in query:
+    query = query.replace("search","")
+    speak("searching in google...")
+    kt.search(query)
