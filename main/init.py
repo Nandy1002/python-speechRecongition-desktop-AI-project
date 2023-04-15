@@ -3,6 +3,8 @@ import speech_recognition as sr # for speech recognition
 import datetime # for getting date and time
 import os #os module for controling operation system applications
 import webbrowser as wb  #for controlling the webbrowsers
+import wikipedia #wikipedia search 
+
 #configuring speak engine with pyttsx3
 
 engine = pyttsx3.init() #initialization
@@ -64,7 +66,81 @@ def wishMe():   #wish according to the time
 if __name__=="__main__":
     
     wishMe()
+    takeCommand()
     
     query = takeCommand().lower() #taking user queries
-
     
+    #open firefox 
+    if 'open firefox' in query:
+        speak2("Opening Firefox Browser...")
+        firefox_path = '/usr/bin/firefox %s'
+        wb.get(firefox_path).open('google.com')
+    else:
+        speak2("I didnt understand, Please Say again")
+
+    #open chrome
+    if 'open chrome' in query:
+        speak2("Opening Chrome Browser...")
+        chrome_path = '/usr/bin/google-chrome %s'
+        wb.get(chrome_path).open('google.com')
+    else:
+        speak2("I didnt understand, Please Say again")
+
+    # libreoffice comands
+    if 'open libra office' in query:
+        speak2("Opening Libreoffice")
+        os.system("libreoffice")
+
+    elif 'open word document' in query:
+        speak2("Opening Empty word document in Libreoffice")
+        os.system("lowriter")
+    
+    elif 'open spreadsheet document' in query:
+        speak2("Opening Empty SpreadSheet document in Libreoffice")
+        os.system("localc")
+    
+    elif 'open presentation document' in query:
+        speak2("Opening Empty Presentation Document in Libreoffice")
+        os.system("loimpress")
+
+    #youtube
+    if 'open youtube' in query:
+        speak2("Opening Youtube...")
+        wb.open('youtube.com')
+    else:
+        speak2("I didnt understand, Please Say again")
+
+    #music system
+    if 'play music' in query:
+        speak2("Playing music from Rhythmbox")
+        os.system("rhythmbox-client --play")
+    
+    elif 'play next' in query:
+        speak2("Playing next music from Rhythmbox")
+        os.system("rhythmbox-client --next")
+
+    elif 'play previous' in query:
+        speak2("Playing previous music from Rhythmbox")
+        os.system("rhythmbox-client --previous")
+        os.system("rhythmbox-client --previous")
+        
+    elif 'pause music' in query:
+        speak2("Paused Music from Rhythmbox")
+        os.system("rhythmbox-client --pause")
+        
+    elif 'open rhythm box' in query:
+        speak2("Opening Rhythmbox...")
+        os.system("rhythmbox-client")
+
+    if 'wikipedia' in query:
+        speak2("Searching in Wikipedia")
+        query = query.replace("wikipedia","")
+        results = wikipedia.summary(query,sentences=2)
+        speak2("According to Wikipedia , "+results)
+    else:
+        speak2("I didnt understand, Please Say again")
+
+    #visual studio code
+    if 'open code' in query:
+        speak2("Opening Visual Studio Code Editor")
+        os.system("code")
