@@ -38,11 +38,12 @@ def takeCommand():
         query = r.recognize_google(audio, language='en-in')
         print(f"You said: {query}\n")  # User query will be printed.
 
-    except Exception as e:
+    except Exception:
+        pass
         # print(e)
         # Say that again will be printed in case of improper voice
-        print("Say that again please...")
-        return "None"  # None string will be returned
+        # print("Say that again please...")
+        # return "None"  # None string will be returned
     return query
 
 #user defined functions for IRIS functionalities
@@ -63,31 +64,24 @@ def wishMe():   #wish according to the time
 
 #main loop of the program
 
-if __name__=="__main__":
-    
-    wishMe()
-    takeCommand()
+wishMe()
+while(True):
     
     query = takeCommand().lower() #taking user queries
     
     #open firefox 
     if 'open firefox' in query:
         speak2("Opening Firefox Browser...")
-        firefox_path = '/usr/bin/firefox %s'
-        wb.get(firefox_path).open('google.com')
-    else:
-        speak2("I didnt understand, Please Say again")
+        wb.open()
 
     #open chrome
-    if 'open chrome' in query:
+    elif 'open chrome' in query:
         speak2("Opening Chrome Browser...")
         chrome_path = '/usr/bin/google-chrome %s'
         wb.get(chrome_path).open('google.com')
-    else:
-        speak2("I didnt understand, Please Say again")
 
-    # libreoffice comands
-    if 'open libra office' in query:
+    # libreoffice commands
+    elif 'open libra office' in query:
         speak2("Opening Libreoffice")
         os.system("libreoffice")
 
@@ -104,14 +98,12 @@ if __name__=="__main__":
         os.system("loimpress")
 
     #youtube
-    if 'open youtube' in query:
+    elif 'open youtube' in query:
         speak2("Opening Youtube...")
         wb.open('youtube.com')
-    else:
-        speak2("I didnt understand, Please Say again")
-
+    
     #music system
-    if 'play music' in query:
+    elif 'play music' in query:
         speak2("Playing music from Rhythmbox")
         os.system("rhythmbox-client --play")
     
@@ -132,15 +124,19 @@ if __name__=="__main__":
         speak2("Opening Rhythmbox...")
         os.system("rhythmbox-client")
 
-    if 'wikipedia' in query:
+    elif 'wikipedia' in query:
         speak2("Searching in Wikipedia")
         query = query.replace("wikipedia","")
         results = wikipedia.summary(query,sentences=2)
         speak2("According to Wikipedia , "+results)
-    else:
-        speak2("I didnt understand, Please Say again")
 
     #visual studio code
-    if 'open code' in query:
+    elif 'open code' in query:
         speak2("Opening Visual Studio Code Editor")
         os.system("code")
+        
+    elif 'goodbye' in query:
+        speak2("See you next time")
+        exit()
+    else :
+        speak2("Plsease say again.")
