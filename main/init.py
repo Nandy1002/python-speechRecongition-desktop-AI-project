@@ -2,7 +2,7 @@ import pyttsx3 # voice module for  speaking
 import speech_recognition as sr # for speech recognition
 import datetime # for getting date and time
 import os #os module for controling operation system applications
-
+import webbrowser as wb  #for controlling the webbrowsers
 #configuring speak engine with pyttsx3
 
 engine = pyttsx3.init() #initialization
@@ -62,4 +62,9 @@ def wishMe():   #wish according to the time
 #main loop of the program
 
 if __name__=="__main__":
+    
     wishMe()
+    
+    query = takeCommand().lower() #taking user queries
+
+    
