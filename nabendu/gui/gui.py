@@ -5,7 +5,8 @@ import pyttsx3 # voice module for  speaking
 import speech_recognition as sr # for speech recognition
 import datetime # for getting date and time
 import os #os module for controling operation system applications
-import sys
+#import sys
+import pywhatkit as kt #for google Searches
 import webbrowser as wb  #for controlling the webbrowsers
 import wikipedia #wikipedia search 
 
@@ -19,8 +20,21 @@ def speak1(text):
     aitext.insert(0,text)
     engine.say(text)
     engine.runAndWait()
+
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
     
     
+def wishMe():   #wish according to the time
+    hour = int(datetime.datetime.now().hour)
+    if hour>=0 and hour<12:
+        speak("Good Morning!")
+    elif hour>=12 and hour<18:
+        speak("Good Afternoon!")
+    else:
+        speak("Good Evening!")
+
 def takeCommand():
     # It takes microphone input from the user and returns string output
 
@@ -57,19 +71,19 @@ def takeCommand():
     # libreoffice commands
     elif 'open libra office' in query:
         speak1("Opening Libreoffice")
-        os.system("libreoffice")
+        os.system("libreoffice &")
 
     elif 'open word document' in query:
         speak1("Opening Empty word document in Libreoffice")
-        os.system("lowriter")
+        os.system("lowriter &")
     
     elif 'open spreadsheet document' in query:
         speak1("Opening Empty SpreadSheet document in Libreoffice")
-        os.system("localc")
+        os.system("localc &")
     
     elif 'open presentation document' in query:
         speak1("Opening Empty Presentation Document in Libreoffice")
-        os.system("loimpress")
+        os.system("loimpress &")
 
     #youtube
     elif 'open youtube' in query:
@@ -102,21 +116,39 @@ def takeCommand():
         speak1("Searching in Wikipedia")
         query = query.replace("wikipedia","")
         results = wikipedia.summary(query,sentences=2)
+        bodyText.insert(ttk.END,results)
         speak1("According to Wikipedia , "+results)
-
+        aitext.delete(0,ttk.END)
+        aitext.insert(0,"According to Wikipedia...")
     #visual studio code
     elif 'open code' in query:
         speak1("Opening Visual Studio Code Editor")
-        os.system("code")
+        os.system("code &")
         
     elif 'goodbye' in query:
         speak1("See you next time")
         exit()
+
+    elif 'introduce yourself' in query:
+        speak1("Hello, User")
+        intro="I am IRIS, An Desktop AI. I can help you in doing your tasks inside your computer and increse your productivity, like -  I can open programs for you or play music or do any google search"
+        bodyText.delete(ttk.END)
+        bodyText.insert(ttk.END,intro)
+        speak(intro)
+    elif "search" in query:
+        query = query.replace("search","")
+        speak1("searching in google...")
+        kt.search(query)
+    elif "youtube video" in query:
+        query = query.replace("youtube video","")
+        speak1("Searching in Youtube...")
+        kt.playonyt(query)
+
     else :
         speak1("Plsease say again.")
     
-    bodyText.insert(0,sys.stdout)
-
+    #bodyText.insert(0,sys.stdout)
+    #bodyText.insert(ttk.END,sys.stderr)
     
 
 
@@ -153,6 +185,7 @@ aiTextFrame = ttk.LabelFrame(master=frame1,text=" IRIS AI Says : ",bootstyle=INF
 aiTextFrame.grid(row=0,column=1,rowspan=2,padx=10)
 
 aitext = ttk.Entry(aiTextFrame,bootstyle="success",width=70)
+aitext.insert(0,"Hi! How can I help you today?")
 aitext.pack(padx=10,pady=10)
 
 #frame2
@@ -167,12 +200,14 @@ bodyText.pack(padx=20,pady=20)
 
 
 usertext = ttk.Entry(master=frame3,bootstyle="success",width=85)
+usertext.insert(0,"Your Spoken Commands here!")
 usertext.grid(row=0,column=0,padx=10,pady=10)
 
 button = ttk.Button(master=frame3,bootstyle=(DANGER,OUTLINE),text="Take Command",command=takeCommand)
 button.grid(row=0,column=1,padx=10,pady=10)
 
 
+wishMe()
 root.mainloop()
 
    
