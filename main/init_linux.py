@@ -13,6 +13,7 @@ engine.setProperty('rate',130) #speaking speed = 130 (default 200)
 def speak1(text):
     engine.say(text)
     engine.runAndWait()
+    
 
 # generate voice using mbrolla voice without pyttsx3
 
