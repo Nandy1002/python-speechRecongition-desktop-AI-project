@@ -3,15 +3,14 @@ import speech_recognition as sr # for speech recognition
 import datetime # for getting date and time
 import os #os module for controling operation system applications
 import webbrowser as wb  #for controlling the webbrowsers
-import wikipedia #wikipedia search
-import customtkinter as ctk
-
+import wikipedia #wikipedia search 
+import customtkinter as ctk #for the gui
 
 #configuring speak engine with pyttsx3
 
 engine = pyttsx3.init() #initialization
-engine.setProperty('voice', 'english_rp+f5') #setting the female voice
-engine.setProperty('rate',130) #speaking speed = 130 (default 200)
+#engine.setProperty('voice', 'english_rp+f5') #setting the female voice
+engine.setProperty('rate',180) #speaking speed = 130 (default 200)
 def speak1(text):
     engine.say(text)
     engine.runAndWait()
@@ -38,6 +37,7 @@ def takeCommand():
         print("Recognizing...")
         # Using google for voice recognition.
         query = r.recognize_google(audio, language='en-in')
+        entry2.placeholder_text=query
         print(f"You said: {query}\n")  # User query will be printed.
 
     except Exception:
@@ -54,13 +54,13 @@ def takeCommand():
 def wishMe():   #wish according to the time
     hour = int(datetime.datetime.now().hour)
     if hour>=0 and hour<12:
-        speak2("Good Morning!")
+        speak("Good Morning!")
     elif hour>=12 and hour<18:
-        speak2("Good Afternoon!")
+        speak1("Good Afternoon!")
     else:
-        speak2("Good Evening!")
+        speak1("Good Evening!")
 
-    speak2("Hey! I am Iris an Desktop AI , Please tell me, how may I help you?")  #welcome note after greeting
+    speak1("Hey! I am Iris an Desktop AI , Please tell me How may I help you?")  #welcome note after greeting
 
 
 #main loop of the program
@@ -72,72 +72,72 @@ while(True):
     
     #open firefox 
     if 'open firefox' in query:
-        speak2("Opening Firefox Browser...")
+        speak1("Opening Firefox Browser...")
         wb.open()
 
     #open chrome
     elif 'open chrome' in query:
-        speak2("Opening Chrome Browser...")
+        speak1("Opening Chrome Browser...")
         chrome_path = '/usr/bin/google-chrome %s'
         wb.get(chrome_path).open('google.com')
 
     # libreoffice commands
     elif 'open libra office' in query:
-        speak2("Opening Libreoffice")
+        speak1("Opening Libreoffice")
         os.system("libreoffice")
 
     elif 'open word document' in query:
-        speak2("Opening Empty word document in Libreoffice")
+        speak1("Opening Empty word document in Libreoffice")
         os.system("lowriter")
     
     elif 'open spreadsheet document' in query:
-        speak2("Opening Empty SpreadSheet document in Libreoffice")
+        speak1("Opening Empty SpreadSheet document in Libreoffice")
         os.system("localc")
     
     elif 'open presentation document' in query:
-        speak2("Opening Empty Presentation Document in Libreoffice")
+        speak1("Opening Empty Presentation Document in Libreoffice")
         os.system("loimpress")
 
     #youtube
     elif 'open youtube' in query:
-        speak2("Opening Youtube...")
+        speak1("Opening Youtube...")
         wb.open('youtube.com')
     
     #music system
     elif 'play music' in query:
-        speak2("Playing music from Rhythmbox")
+        speak1("Playing music from Rhythmbox")
         os.system("rhythmbox-client --play")
     
     elif 'play next' in query:
-        speak2("Playing next music from Rhythmbox")
+        speak1("Playing next music from Rhythmbox")
         os.system("rhythmbox-client --next")
 
     elif 'play previous' in query:
-        speak2("Playing previous music from Rhythmbox")
+        speak1("Playing previous music from Rhythmbox")
         os.system("rhythmbox-client --previous")
         os.system("rhythmbox-client --previous")
         
     elif 'pause music' in query:
-        speak2("Paused Music from Rhythmbox")
+        speak1("Paused Music from Rhythmbox")
         os.system("rhythmbox-client --pause")
         
     elif 'open rhythm box' in query:
-        speak2("Opening Rhythmbox...")
+        speak1("Opening Rhythmbox...")
         os.system("rhythmbox-client")
 
     elif 'wikipedia' in query:
-        speak2("Searching in Wikipedia")
+        speak1("Searching in Wikipedia")
         query = query.replace("wikipedia","")
         results = wikipedia.summary(query,sentences=2)
-        speak2("According to Wikipedia , "+results)
+        speak1("According to Wikipedia , "+results)
 
     #visual studio code
     elif 'open code' in query:
-        speak2("Opening Visual Studio Code Editor")
+        speak1("Opening Visual Studio Code Editor")
         os.system("code")
         
     elif 'goodbye' in query:
-        speak2("See you next time")
+        speak1("See you next time")
         exit()
     else :
-        speak2("Plsease say again.")
+        speak1("Plsease say again.")

@@ -26,4 +26,8 @@ def takeCommand():
         return "None"  # None string will be returned
     return query
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ced9fff30ffd1860efc50cbd139beeef458beb5b
 takeCommand()

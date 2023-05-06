@@ -1,4 +1,4 @@
-pyqt tutorialpyqt tutorial# -*- coding: utf-8 -*-
+#pyqt tutorialpyqt tutorial# -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'jarvisUi.ui'
 #
