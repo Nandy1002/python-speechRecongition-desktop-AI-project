@@ -3,7 +3,9 @@ import speech_recognition as sr # for speech recognition
 import datetime # for getting date and time
 import os #os module for controling operation system applications
 import webbrowser as wb  #for controlling the webbrowsers
-import wikipedia #wikipedia search 
+import wikipedia #wikipedia search
+import customtkinter as ctk
+
 
 #configuring speak engine with pyttsx3
 
@@ -59,7 +61,6 @@ def wishMe():   #wish according to the time
         speak2("Good Evening!")
 
     speak2("Hey! I am Iris an Desktop AI , Please tell me, how may I help you?")  #welcome note after greeting
-
 
 
 #main loop of the program

@@ -25,3 +25,5 @@ def takeCommand():
         print("Say that again please...")
         return "None"  # None string will be returned
     return query
+
+takeCommand()
