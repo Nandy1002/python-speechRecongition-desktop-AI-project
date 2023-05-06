@@ -143,7 +143,9 @@ def takeCommand():
         query = query.replace("youtube video","")
         speak1("Searching in Youtube...")
         kt.playonyt(query)
-
+    elif "open whatsapp" in query:
+        speak1("Opening Whatsapp...")
+        os.system("whatsapp-for-linux &")
     else :
         speak1("Plsease say again.")
     
